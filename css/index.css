@@ -1,0 +1,13 @@
+.container {
+    max-width: 450px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* grid-template-rows: repeat(4, 1fr); */
+    margin: 0 auto;
+    font-size: 3.5em;
+    text-align: center;
+}
+
+.item {
+    border: 2px solid #bbada0;
+}
