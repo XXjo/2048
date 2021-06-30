@@ -1,13 +1,27 @@
+body {
+    background-color: #F1EAE2;
+}
+
 .container {
-    max-width: 450px;
+    width: 430px;
+    height: 430px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     /* grid-template-rows: repeat(4, 1fr); */
+    gap: 5px;
     margin: 0 auto;
+    padding: 10px;
     font-size: 3.5em;
-    text-align: center;
+    background-color: #BBADA0;
 }
 
 .item {
-    border: 2px solid #bbada0;
+    text-align: center;
+    line-height: 100px;  /* 与height保持一致，从而使得文字垂直居中*/
+    background-color: #CDC1B4;
+}
+
+.item[data-val="128"], 
+.item[data-val="256"] {
+    
 }
