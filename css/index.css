@@ -11,17 +11,77 @@ body {
     gap: 5px;
     margin: 0 auto;
     padding: 10px;
-    font-size: 3.5em;
+    font-size: 3.5rem;
     background-color: #BBADA0;
 }
 
 .item {
     text-align: center;
-    line-height: 100px;  /* 与height保持一致，从而使得文字垂直居中*/
+    line-height: 100px;  /* 与每个item的height保持一致，从而使得文字垂直居中*/
     background-color: #CDC1B4;
 }
 
 .item[data-val="128"], 
-.item[data-val="256"] {
-    
+.item[data-val="256"],
+.item[data-val="512"] {
+    font-size: 3rem;
 }
+
+.item[data-val="1024"],
+.item[data-val="2048"] {
+    font-size: 2.5rem;
+}
+
+.item[data-val] {
+    color: #FFFFFF;
+}
+
+.item[data-val="2"],
+.item[data-val="4"] {
+    color: #776E65;
+}
+
+.item[data-val="2"] {
+    background-color: #EEE4DA;
+}
+
+.item[data-val="4"] {
+    background-color: #EDE0C8;
+}
+
+.item[data-val="8"] {
+    background-color: #F2B179;
+}
+
+.item[data-val="16"] {
+    background-color: #F59563;
+}
+
+.item[data-val="32"] {
+    background-color: #F67C5F;
+}
+
+.item[data-val="64"] {
+    background-color: #F65E3B;
+}
+
+.item[data-val="128"] {
+    background-color: #EDCF72;
+}
+
+.item[data-val="256"] {
+    background-color: #EDCC61;
+}
+
+.item[data-val="512"] {
+    background-color: #EDC850;
+}
+
+.item[data-val="1024"] {
+    background-color: #EDC53F;
+}
+
+.item[data-val="2048"] {
+    background-color: #EDC22E;
+}
+
