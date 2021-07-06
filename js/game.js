@@ -4,19 +4,21 @@
  * @Autor: XuXiaoling
  * @Date: 2021-07-01 10:59:29
  * @LastEditors: XuXiaoling
- * @LastEditTime: 2021-07-01 17:55:44
+ * @LastEditTime: 2021-07-06 17:28:14
  */
 class Game {
     constructor() {
         this.score = this.initScore();
         this.data = this.initData(16);
+        this.getRamdomData();
+        
     }
 
     initData(total) {
         let data = [];
         for(let i = 0; i < total; i++) {
             data.push({
-                value: 1,
+                value: 0,
                 index: i
             })
         }
@@ -27,18 +29,45 @@ class Game {
         return 0;
     }
 
-    move() {
-
+    move(rawData) {
+        let loop = rawData.length;
+        while(loop > 1) {
+            for(let i = 0; i < rawData.length - 1; i++) {
+                if(rawData[i].value === 0 && rawData[i + 1].value !== 0) {
+                    rawData[i].value = rawData[i + 1].value;
+                    rawData[i + 1].value = 0;
+                }
+            }
+            loop--;
+        }
     }
 
-    merge() {
-
+    merge(rawData) {
+        let loop = rawData.length;
+        while(loop > 1) {
+            for(let i = 0; i < rawData.length - 1; i++) {
+                if(rawData[i].value === 0) {
+                    continue;
+                }
+                let zeroNum = 0;
+                for(let j = i + 1; j < rawData.length; j++) {
+                    if(rawData[j].value === 0) {
+                        zeroNum += 1;
+                    }
+                    else if(rawData[i].value === rawData[j].value && zeroNum === j - i - 1) {
+                        rawData[i].value = 2 * rawData[i].value;
+                        rawData[j].value = 0;
+                    }
+                }
+            }
+            loop -= 1;
+        }
     }
 
     getRandomPos() {
         let candidatePos = []
         this.data.forEach((ele, index) => {
-            if(ele === 0) {
+            if(ele.value === 0) {
                 candidatePos.push(index);
             }
         });
@@ -51,15 +80,19 @@ class Game {
     }
 
     getRandomVal() {
-        let candidateVal = [2 , 4];
-        let index = Math.round(Math.random() * (candidateVal.length - 1));
-        return candidateVal[index];
+        return Math.random() > 0.9 ? 4 : 2;
     }
 
+    getRamdomData() {
+        let pos = this.getRandomPos()
+        if(pos !== undefined) {
+            this.data[pos].value = this.getRandomVal();
+        }
+    }
 }
 
 let game = new Game();
-console.log(typeof(game.getRamdonPos()));
+
 
 
 
