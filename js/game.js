@@ -4,14 +4,14 @@
  * @Autor: XuXiaoling
  * @Date: 2021-07-01 10:59:29
  * @LastEditors: XuXiaoling
- * @LastEditTime: 2021-07-06 17:28:14
+ * @LastEditTime: 2021-07-07 17:13:03
  */
 class Game {
-    constructor() {
+    constructor(view) {
+        this.view = view;
         this.score = this.initScore();
         this.data = this.initData(16);
-        this.getRamdomData();
-        
+        this.getRamdomData();  
     }
 
     initData(total) {
@@ -89,9 +89,11 @@ class Game {
             this.data[pos].value = this.getRandomVal();
         }
     }
-}
 
-let game = new Game();
+    processDataByDirection(direction) {
+        
+    }
+}
 
 
 

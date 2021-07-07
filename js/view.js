@@ -27,6 +27,3 @@ class View {
      {value: 8, index: 5},
  ]
 
-let view = new View();
-console.log(view.domElements);
-view.updateView(data)
