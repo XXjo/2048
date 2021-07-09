@@ -4,7 +4,7 @@
  * @Autor: XuXiaoling
  * @Date: 2021-07-07 16:30:34
  * @LastEditors: XuXiaoling
- * @LastEditTime: 2021-07-07 17:36:17
+ * @LastEditTime: 2021-07-08 10:44:36
  */
 let view = new View();
 let game = new Game(view);
@@ -13,15 +13,16 @@ window.addEventListener("keydown", (e) => {
     console.log(e);
     let direction = -1;
     if(e.key === "ArrowUp") {
-        direction = 0;
+        direction = "up";
     }
     else if(e.key === "ArrowRight") {
-        direction = 1;
+        direction = "right";
     }
     else if(e.key === "ArrowDown") {
-        direction = 2;
+        direction = "down";
     }
     else if(e.key === "ArrowLeft") {
-        direction = 3;
+        direction = "left";
     }
+    game.processDataByDirection(direction, indexs);
 })

@@ -4,7 +4,7 @@
  * @Autor: XuXiaoling
  * @Date: 2021-07-01 10:59:29
  * @LastEditors: XuXiaoling
- * @LastEditTime: 2021-07-07 17:13:03
+ * @LastEditTime: 2021-07-08 10:43:16
  */
 class Game {
     constructor(view) {
@@ -90,8 +90,13 @@ class Game {
         }
     }
 
-    processDataByDirection(direction) {
-        
+    processDataByDirection(direction, indexs) {
+        let loopnum = indexs[direction].num;
+        for (let i = 0; i < loopnum; i++) {
+            let index_arry = indexs[direction].init.map(ele => ele + i);
+            let subdata = this.data.filter(ele => index_arry.includes(ele.index));
+            console.log(subdata);
+        }
     }
 }
 
