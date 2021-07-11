@@ -4,13 +4,14 @@
  * @Autor: XuXiaoling
  * @Date: 2021-07-07 16:30:34
  * @LastEditors: XuXiaoling
- * @LastEditTime: 2021-07-08 10:44:36
+ * @LastEditTime: 2021-07-11 17:17:06
  */
 let view = new View();
 let game = new Game(view);
 
 window.addEventListener("keydown", (e) => {
     console.log(e);
+    //e.preventDefault(); //取消方向键的默认行为
     let direction = -1;
     if(e.key === "ArrowUp") {
         direction = "up";
@@ -24,5 +25,6 @@ window.addEventListener("keydown", (e) => {
     else if(e.key === "ArrowLeft") {
         direction = "left";
     }
-    game.processDataByDirection(direction, indexs);
+    game.operateByDirection(direction, indexs);
+    
 })

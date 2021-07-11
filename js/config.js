@@ -4,7 +4,7 @@
  * @Autor: XuXiaoling
  * @Date: 2021-07-07 17:55:15
  * @LastEditors: XuXiaoling
- * @LastEditTime: 2021-07-08 10:38:08
+ * @LastEditTime: 2021-07-11 14:30:27
  */
 
 var indexs = {
@@ -17,7 +17,7 @@ var indexs = {
         "num": 4
     },
     "down": {
-        "init": [3, 2, 1, 0],
+        "init": [12, 8, 4, 0],
         "num": 4
     },
     "left": {
