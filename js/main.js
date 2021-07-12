@@ -4,8 +4,12 @@
  * @Autor: XuXiaoling
  * @Date: 2021-07-07 16:30:34
  * @LastEditors: XuXiaoling
- * @LastEditTime: 2021-07-11 17:17:06
+ * @LastEditTime: 2021-07-12 13:20:43
  */
+import indexs from "./config.js";
+import View from "./view.js";
+import Game from "./game.js";
+
 let view = new View();
 let game = new Game(view);
 

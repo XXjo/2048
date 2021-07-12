@@ -4,7 +4,7 @@
  * @Autor: XuXiaoling
  * @Date: 2021-06-30 17:53:41
  * @LastEditors: XuXiaoling
- * @LastEditTime: 2021-07-11 16:14:45
+ * @LastEditTime: 2021-07-12 13:18:35
  */
 class View {
     constructor() {
@@ -23,3 +23,4 @@ class View {
     }
 }
 
+export default View;

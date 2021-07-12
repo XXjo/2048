@@ -4,7 +4,7 @@
  * @Autor: XuXiaoling
  * @Date: 2021-07-01 10:59:29
  * @LastEditors: XuXiaoling
- * @LastEditTime: 2021-07-11 17:27:20
+ * @LastEditTime: 2021-07-12 13:26:45
  */
 class Game {
     constructor(view) {
@@ -29,6 +29,7 @@ class Game {
             {value: 0, index: 14},
             {value: 0, index: 15},
         ]
+        this.isRandom = false;
         // this.getRamdomData();  
     }
 
@@ -54,6 +55,7 @@ class Game {
                 if(rawData[i].value === 0 && rawData[i + 1].value !== 0) {
                     rawData[i].value = rawData[i + 1].value;
                     rawData[i + 1].value = 0;
+                    this.isRandom = true;
                 }
             }
             loop--;
@@ -75,6 +77,7 @@ class Game {
                     else if(rawData[i].value === rawData[j].value && zeroNum === j - i - 1) {
                         rawData[i].value = 2 * rawData[i].value;
                         rawData[j].value = 0;
+                        this.isRandom = true;
                     }
                 }
             }
@@ -108,18 +111,8 @@ class Game {
         }
     }
 
-    isEqual(val1, val2) {
-        for(let i = 0; i < val1.length; i++) {
-            for(let j = 0; j < val2.length; j++) {
-                if(val1[i].value !== val2[j].value) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
     operateByDirection(direction, indexs) {
+        this.isRandom = false;
         let loopnum = indexs[direction].num;
         let new_data = [];
         for (let i = 0; i < loopnum; i++) {
@@ -141,23 +134,13 @@ class Game {
             this.move(subdata);
             new_data = [...new_data, ...subdata];
         }
-        
-        let deepCopyOfData = JSON.parse(JSON.stringify(this.data));
-        console.log("deepCopyOfData", deepCopyOfData);
-        console.log(this.data);
-        if(!this.isEqual(deepCopyOfData, new_data)) {
-            this.data = new_data;
-            this.data.sort((a, b) => a["index"] - b["index"]);
-            this.getRamdomData();
-        }
-        else {
-            this.data = new_data;
-            this.data.sort((a, b) => a["index"] - b["index"]);
-        }
-        view.updateView(this.data);
+        this.data = new_data;
+        this.data.sort((a, b) => a["index"] - b["index"]);
+        this.isRandom ? this.getRamdomData() : "";
+        this.view.updateView(this.data);
     }
 }
 
 
 
-
+export default Game;

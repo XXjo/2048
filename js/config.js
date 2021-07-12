@@ -4,7 +4,7 @@
  * @Autor: XuXiaoling
  * @Date: 2021-07-07 17:55:15
  * @LastEditors: XuXiaoling
- * @LastEditTime: 2021-07-11 14:30:27
+ * @LastEditTime: 2021-07-12 11:18:43
  */
 
 var indexs = {
@@ -25,3 +25,5 @@ var indexs = {
         "num": 4
     }
 }
+
+export default indexs;
