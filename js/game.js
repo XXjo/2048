@@ -4,33 +4,43 @@
  * @Autor: XuXiaoling
  * @Date: 2021-07-01 10:59:29
  * @LastEditors: XuXiaoling
- * @LastEditTime: 2021-07-12 13:26:45
+ * @LastEditTime: 2021-07-13 17:31:52
  */
 class Game {
     constructor(view) {
         this.view = view;
-        this.score = this.initScore();
-        //this.data = this.initData(16);
-        this.data = [
-            {value: 2, index: 0},
-            {value: 0, index: 1},
-            {value: 0, index: 2},
-            {value: 2, index: 3},
-            {value: 0, index: 4},
-            {value: 0, index: 5},
-            {value: 0, index: 6},
-            {value: 0, index: 7},
-            {value: 0, index: 8},
-            {value: 0, index: 9},
-            {value: 0, index: 10},
-            {value: 0, index: 11},
-            {value: 0, index: 12},
-            {value: 0, index: 13},
-            {value: 0, index: 14},
-            {value: 0, index: 15},
-        ]
         this.isRandom = false;
-        // this.getRamdomData();  
+        if(!localStorage.data) {
+            this.score = this.initScore();
+            this.best = 0;
+            this.data = this.initData(16);
+            this.getRamdomData();
+            this.getRamdomData();
+            this.view.updateView(this.data, this.score, this.best);
+        }
+        else {
+            this.data = localStorage.data;
+            this.score = localStorage.score;
+            this.best = localStorage.best
+        }
+        // this.data = [
+        //     {value: 2, index: 0},
+        //     {value: 0, index: 1},
+        //     {value: 0, index: 2},
+        //     {value: 2, index: 3},
+        //     {value: 0, index: 4},
+        //     {value: 0, index: 5},
+        //     {value: 0, index: 6},
+        //     {value: 0, index: 7},
+        //     {value: 0, index: 8},
+        //     {value: 0, index: 9},
+        //     {value: 0, index: 10},
+        //     {value: 0, index: 11},
+        //     {value: 0, index: 12},
+        //     {value: 0, index: 13},
+        //     {value: 0, index: 14},
+        //     {value: 0, index: 15},
+        // ]
     }
 
     initData(total) {
@@ -77,6 +87,7 @@ class Game {
                     else if(rawData[i].value === rawData[j].value && zeroNum === j - i - 1) {
                         rawData[i].value = 2 * rawData[i].value;
                         rawData[j].value = 0;
+                        this.score += 2 * rawData[i].value;
                         this.isRandom = true;
                     }
                 }
@@ -137,7 +148,12 @@ class Game {
         this.data = new_data;
         this.data.sort((a, b) => a["index"] - b["index"]);
         this.isRandom ? this.getRamdomData() : "";
-        this.view.updateView(this.data);
+        this.best = this.score > this.best ? this.score : this.best;
+        this.view.updateView(this.data, this.score, this.best);
+        //存储数据，以防页面关闭时找回数据
+        // localStorage.data = this.data;
+        // localStorage.score = this.score;
+        // localStorage.best = this.best;
     }
 }
 

@@ -3,13 +3,55 @@ body {
 }
 
 .container {
+    max-width: 450px;
+    margin: 0 auto;
+
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.best-div,
+.score-div {
+    background-color: #BBADA0;
+    color: #FFFFFF;
+    float: left;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 3px 20px;
+
+}
+.best-div {
+    margin-right: 10px;
+}
+
+.info .title {
+    color: #EEE4DA;
+    font-size: 1rem;
+}
+
+.new-game {
+    background-color: #8F7A66;
+    color: #FFFFFF;
+    padding: 0 8px;
+    height: 40px;
+    line-height: 40px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.item-container {
     width: 430px;
     height: 430px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     gap: 5px;
-    margin: 0 auto;
     padding: 10px;
     font-size: 3.5rem;
     background-color: #BBADA0;
