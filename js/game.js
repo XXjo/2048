@@ -4,7 +4,7 @@
  * @Autor: XuXiaoling
  * @Date: 2021-07-01 10:59:29
  * @LastEditors: XuXiaoling
- * @LastEditTime: 2021-07-14 14:05:20
+ * @LastEditTime: 2021-07-14 23:03:26
  */
 class Game {
     constructor(view) {
@@ -77,27 +77,44 @@ class Game {
     }
 
     merge(rawData) {
-        let loop = rawData.length;
-        while(loop > 1) {
-            for(let i = 0; i < rawData.length - 1; i++) {
-                if(rawData[i].value === 0) {
-                    continue;
+        for(let i = 0; i < rawData.length - 1; i++) {
+            if(rawData[i].value === 0) {
+                continue;
+            }
+            let zeroNum = 0;
+            for(let j = i + 1; j < rawData.length; j++) {
+                if(rawData[j].value === 0) {
+                    zeroNum += 1;
                 }
-                let zeroNum = 0;
-                for(let j = i + 1; j < rawData.length; j++) {
-                    if(rawData[j].value === 0) {
-                        zeroNum += 1;
-                    }
-                    else if(rawData[i].value === rawData[j].value && zeroNum === j - i - 1) {
-                        rawData[i].value = 2 * rawData[i].value;
-                        rawData[j].value = 0;
-                        this.score += 2 * rawData[i].value;
-                        this.isRandom = true;
-                    }
+                else if(rawData[i].value === rawData[j].value && zeroNum === j - i - 1) {
+                    rawData[i].value = 2 * rawData[i].value;
+                    rawData[j].value = 0;
+                    this.score += 2 * rawData[i].value;
+                    this.isRandom = true;
                 }
             }
-            loop -= 1;
         }
+        // let loop = rawData.length;
+        // while(loop > 1) {
+        //     for(let i = 0; i < rawData.length - 1; i++) {
+        //         if(rawData[i].value === 0) {
+        //             continue;
+        //         }
+        //         let zeroNum = 0;
+        //         for(let j = i + 1; j < rawData.length; j++) {
+        //             if(rawData[j].value === 0) {
+        //                 zeroNum += 1;
+        //             }
+        //             else if(rawData[i].value === rawData[j].value && zeroNum === j - i - 1) {
+        //                 rawData[i].value = 2 * rawData[i].value;
+        //                 rawData[j].value = 0;
+        //                 this.score += 2 * rawData[i].value;
+        //                 this.isRandom = true;
+        //             }
+        //         }
+        //     }
+        //     loop -= 1;
+        // }
     }
 
     getRandomPos() {
@@ -120,10 +137,11 @@ class Game {
     }
 
     appearRandomData() {
-        let pos = this.getRandomPos()
+        let pos = this.getRandomPos();
         if(pos !== undefined) {
-            this.view.appearValue(this.getRandomVal(), pos);
-            this.data[pos].value = this.getRandomVal();
+            let value = this.getRandomVal();
+            this.view.appearValue(value, pos);
+            this.data[pos].value = value;
         }
     }
 
@@ -153,6 +171,7 @@ class Game {
         this.data = new_data;
         this.data.sort((a, b) => a["index"] - b["index"]);
         this.best = this.score > this.best ? this.score : this.best;
+        console.log(this.data);
         this.view.updateView(this.data, this.score, this.best);
         this.isRandom ? this.appearRandomData() : "";
         //存储数据，以防页面关闭时找回数据

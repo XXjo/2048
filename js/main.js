@@ -4,7 +4,7 @@
  * @Autor: XuXiaoling
  * @Date: 2021-07-07 16:30:34
  * @LastEditors: XuXiaoling
- * @LastEditTime: 2021-07-14 14:15:55
+ * @LastEditTime: 2021-07-14 21:51:53
  */
 import indexs from "./config.js";
 import View from "./view.js";
