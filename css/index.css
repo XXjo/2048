@@ -43,6 +43,12 @@ body {
     line-height: 40px;
     font-weight: bold;
     border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+
+.new-game:active {
+
 }
 
 .item-container {
@@ -61,6 +67,7 @@ body {
     text-align: center;
     line-height: 100px;  /* 与每个item的height保持一致，从而使得文字垂直居中*/
     background-color: #CDC1B4;
+    transition: all 0.15s ease;
 }
 
 .item[data-val="128"], 
@@ -127,3 +134,20 @@ body {
     background-color: #EDC22E;
 }
 
+/* 设置动态效果 */
+/* #region */
+@keyframes appear{
+    0%{
+        transform: scale(0);
+    }
+
+    100%{
+        transform: scale(1);
+    }
+}
+
+.appear {
+    animation: appear 0.3s;
+}
+
+/* #endregion */

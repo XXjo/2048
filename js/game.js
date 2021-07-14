@@ -4,25 +4,13 @@
  * @Autor: XuXiaoling
  * @Date: 2021-07-01 10:59:29
  * @LastEditors: XuXiaoling
- * @LastEditTime: 2021-07-13 17:31:52
+ * @LastEditTime: 2021-07-14 14:05:20
  */
 class Game {
     constructor(view) {
         this.view = view;
         this.isRandom = false;
-        if(!localStorage.data) {
-            this.score = this.initScore();
-            this.best = 0;
-            this.data = this.initData(16);
-            this.getRamdomData();
-            this.getRamdomData();
-            this.view.updateView(this.data, this.score, this.best);
-        }
-        else {
-            this.data = localStorage.data;
-            this.score = localStorage.score;
-            this.best = localStorage.best
-        }
+        this.start();
         // this.data = [
         //     {value: 2, index: 0},
         //     {value: 0, index: 1},
@@ -41,6 +29,22 @@ class Game {
         //     {value: 0, index: 14},
         //     {value: 0, index: 15},
         // ]
+    }
+
+    start() {
+        if(!localStorage.data) {
+            this.score = this.initScore();
+            this.best = 0;
+            this.data = this.initData(16);
+            this.appearRandomData();
+            this.appearRandomData();
+        }
+        else {
+            this.data = localStorage.data;
+            this.score = localStorage.score;
+            this.best = localStorage.best;
+        }
+        this.view.updateView(this.data, this.score, this.best);
     }
 
     initData(total) {
@@ -115,9 +119,10 @@ class Game {
         return Math.random() > 0.9 ? 4 : 2;
     }
 
-    getRamdomData() {
+    appearRandomData() {
         let pos = this.getRandomPos()
         if(pos !== undefined) {
+            this.view.appearValue(this.getRandomVal(), pos);
             this.data[pos].value = this.getRandomVal();
         }
     }
@@ -147,14 +152,16 @@ class Game {
         }
         this.data = new_data;
         this.data.sort((a, b) => a["index"] - b["index"]);
-        this.isRandom ? this.getRamdomData() : "";
         this.best = this.score > this.best ? this.score : this.best;
         this.view.updateView(this.data, this.score, this.best);
+        this.isRandom ? this.appearRandomData() : "";
         //存储数据，以防页面关闭时找回数据
         // localStorage.data = this.data;
         // localStorage.score = this.score;
         // localStorage.best = this.best;
     }
+
+
 }
 
 

@@ -4,7 +4,7 @@
  * @Autor: XuXiaoling
  * @Date: 2021-07-07 16:30:34
  * @LastEditors: XuXiaoling
- * @LastEditTime: 2021-07-13 17:33:34
+ * @LastEditTime: 2021-07-14 14:15:55
  */
 import indexs from "./config.js";
 import View from "./view.js";
@@ -12,7 +12,7 @@ import Game from "./game.js";
 
 let view = new View();
 let game = new Game(view);
-
+console.log(document.querySelector(".new-game"));
 window.addEventListener("keydown", (e) => {
     //e.preventDefault(); //取消方向键的默认行为
     let direction = -1;
@@ -35,3 +35,7 @@ window.addEventListener("keydown", (e) => {
     game.operateByDirection(direction, indexs);
     
 })
+
+document.querySelector(".new-game").addEventListener("click", () => {
+    game.start();
+});
